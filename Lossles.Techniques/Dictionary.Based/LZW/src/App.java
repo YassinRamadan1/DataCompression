@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         
-
+        // path : C:\\dev\\datacompression\\Lossles.Techniques\\Dictionary.Based\\LZW\\src\\Stream.txt
         Scanner scanner = new Scanner(System.in);
         String filePath = scanner.nextLine();
         scanner.close();
@@ -19,8 +19,9 @@ public class App {
 
         ArrayList<Integer> tags = LZW.Compress(stream);
 
+        FileWriter writer = new FileWriter("output.txt");
         for(int i = 0; i < tags.size(); i++)
-            System.out.print("< " + tags.get(i) + " >   ");
-        
+            writer.write("< " + tags.get(i) + " >   ");
+        writer.close();
     }
 }
