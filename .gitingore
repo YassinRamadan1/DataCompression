@@ -1,0 +1,10 @@
+# Ignore compiled class files
+*.class
+
+# Ignore log files and any temporary files
+*.log
+*.tmp
+
+# Ignore build directories
+/bin/
+/build/ 
