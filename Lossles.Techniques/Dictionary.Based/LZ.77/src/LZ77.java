@@ -59,9 +59,10 @@ public static ArrayList<Tag> Compress(String stream, int LWSize, int SWSize) {
                 for(int i = left - tag.position, counter = 0; counter < tag.length; i++, counter++, left++) {
                     deCompressed += deCompressed.charAt(i);
                 }
-                if(tag.nextSymbol != '_')
+                if(tag.nextSymbol != '_') {
                     deCompressed += tag.nextSymbol;
-                left++;
+                    left++;               
+                }
             }
             return deCompressed;
     }
