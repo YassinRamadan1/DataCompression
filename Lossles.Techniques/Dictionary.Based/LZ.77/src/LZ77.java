@@ -61,7 +61,7 @@ public static ArrayList<Tag> Compress(String stream, int LWSize, int SWSize) {
                 }
                 if(tag.nextSymbol != '_') {
                     deCompressed += tag.nextSymbol;
-                    left++;               
+                    left++;
                 }
             }
             return deCompressed;
