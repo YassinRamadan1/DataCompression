@@ -1,27 +1,38 @@
-import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        
-        // path : C:\\dev\\datacompression\\Lossles.Techniques\\Dictionary.Based\\LZW\\src\\Stream.txt
-        Scanner scanner = new Scanner(System.in);
-        String filePath = scanner.nextLine();
-        scanner.close();
-        List<String> lines = Files.readAllLines(Paths.get(filePath));
-        String stream = new String();
-        for (String line : lines)
-            stream = stream + line;
+        Scanner scOption = new Scanner(System.in);
+        Scanner scFilename = new Scanner(System.in);
+        int option;
 
-        ArrayList<Integer> tags = LZW.Compress(stream);
+        System.out.println(
+                "==================================================================================\n" +
+                "============================= Welcome to LZW Program =============================\n" +
+                "==================================================================================");
+        do {
+            System.out.println("[1] Compress File\t\t[2] Decompress File");
+            System.out.print("Select Option: ");
+            option = scOption.nextInt();
 
-        FileWriter writer = new FileWriter("output.txt");
-        for(int i = 0; i < tags.size(); i++)
-            writer.write("< " + tags.get(i) + " >   ");
-        writer.close();
+            if(option == 1) {
+                System.out.printf("Enter File Name: ");
+                String fileName = scFilename.nextLine();
+                LZW.Compress(fileName);
+                System.out.println("Compression Done Successfully");
+                break;
+            }
+            else if(option == 2) {
+                System.out.printf("Enter File Name: ");
+                String fileName = scFilename.nextLine();
+                LZW.Decompress(fileName);
+                System.out.println("Decompression Done Successfully");
+                break;
+            }
+            else {
+                System.out.println("Invalid Option, Try Again");
+            }
+        } while(option != 1 && option != 2);
+
     }
 }
