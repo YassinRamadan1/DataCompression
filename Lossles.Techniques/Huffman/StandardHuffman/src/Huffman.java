@@ -82,4 +82,23 @@ public class Huffman {
         }
         return result;
     }
+
+    public static String Decompress(String Stream, Map<Character, String> codes){
+        String stream = "";
+        Map<String, Character> charactersCode = new TreeMap<>();
+
+        for(var item : codes.keySet()){
+            charactersCode.put(codes.get(item), item);
+        }
+
+        String temp = "";
+        for(int i = 0; i < Stream.length(); i++) {
+            temp += Stream.charAt(i);
+            if (charactersCode.containsKey(temp)) {
+                stream += charactersCode.get(temp);
+                temp = "";
+            }
+        }
+        return stream;
+    }
 }

@@ -4,7 +4,7 @@ import java.util.*;
 public class App {
     public static void main(String[] args) throws Exception {
         
-        //Huffman.Compress();
+        System.out.println(Huffman.Compress("HELLO"));
         
     }
 }
