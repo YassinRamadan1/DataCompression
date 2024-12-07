@@ -16,7 +16,7 @@ public class ArithmeticCoder {
         ArrayList<CharacterData> charactersDataOriginal = getCharactersData(stream, charactersFrequency);
         ArrayList<CharacterData> charactersDataModified = getCharactersData(stream, charactersFrequency);
 
-        writeCharactersRangesToFile("CharacterRanges.txt", charactersDataModified);
+        writeCharactersRangesToFile("CharacterRanges.txt", charactersDataModified, stream.length());
 
         // Assign lower and upper ranges for all characters in stream, and stop at the end
         for (int i = 1; i < stream.length(); i++) {
