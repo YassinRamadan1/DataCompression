@@ -14,6 +14,26 @@ public class FileManager {
         }
         return fileContent.toString();
     }
+
+    public static float readFromBinaryFile(String fileName) throws IOException {
+        try (FileInputStream fis = new FileInputStream(fileName)) {
+            // Read 4 bytes from the file
+            byte[] bytes = new byte[4];
+            if (fis.read(bytes) != 4) {
+                throw new IOException("Insufficient bytes to read a float.");
+            }
+            
+            // Combine the bytes into an int (big-endian format)
+            int intBits = ((bytes[0] & 0xFF) << 24) |
+                          ((bytes[1] & 0xFF) << 16) |
+                          ((bytes[2] & 0xFF) << 8)  |
+                          (bytes[3] & 0xFF);
+            
+            // Convert the int bits back to a float
+            return Float.intBitsToFloat(intBits);
+        }
+    }
+
     public static void writeToBinaryFile(String fileName, float value) {
         try (FileOutputStream fos = new FileOutputStream(fileName, true)) {
             int intBits = Float.floatToIntBits(value);
